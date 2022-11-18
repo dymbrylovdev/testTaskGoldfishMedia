@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {StatusBar} from "expo-status-bar";
+import NavigationComponent from "./src/navigate";
+import { useFonts } from 'expo-font';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+function App() {
+    const [fontsLoaded] = useFonts({
+        'Manrope-Bold': require('./assets/fonts/Manrope-Bold.ttf'),
+        'Manrope-SemiBold': require('./assets/fonts/Manrope-SemiBold.ttf'),
+        'Manrope-Medium': require('./assets/fonts/Manrope-Medium.ttf'),
+    });
+
+    if (!fontsLoaded) {
+        return null;
+    }
+
+    return (
+        <>
+            <StatusBar style={'auto'} />
+            <NavigationComponent/>
+        </>
+    );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
+
