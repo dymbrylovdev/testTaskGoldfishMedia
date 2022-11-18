@@ -13,6 +13,7 @@ import RadioButton from "../../components/common/radio-button";
 import Button from "../../components/common/button";
 import LogoMiniSVG from "../../../assets/svg/LogoMiniSVG";
 import ArrowButtonMiniSVG from "../../../assets/svg/ArrowButtonMiniSVG";
+import {DocumentResult} from "expo-document-picker/src/types";
 
 type StackProps = StackScreenProps<RootStackParamList, ScreenNames.Registration>;
 
@@ -25,10 +26,13 @@ const RegistrationScreen: React.FC<StackProps> = ({
     return typeUser === UserType.Doctor
   }, [typeUser])
   const [selectedCity, setSelectedCity] = useState();
+  const [isFile, setIsFile] = useState(false);
 
   const pickDocument = async () => {
-    let result = await DocumentPicker.getDocumentAsync({});
-    console.log(result);
+    let result : DocumentResult = await DocumentPicker.getDocumentAsync({});
+    if (result.type === "success") {
+      setIsFile (true);
+    }
   };
 
   const toConfirmRegistration = useCallback((typeUser: string) => {
@@ -96,7 +100,7 @@ const RegistrationScreen: React.FC<StackProps> = ({
                 </Picker>
               </View>
             </View>
-            <View style={[styles.container_input, {marginBottom: 46}]}>
+            <View style={[styles.container_input, isFile && {marginBottom: 46}]}>
               <Text style={styles.text}>Диплом</Text>
               <View style={{flex:1}}>
                 <TouchableOpacity
@@ -108,17 +112,18 @@ const RegistrationScreen: React.FC<StackProps> = ({
                   </View>
                   <Text style={styles.text_document}>Прикрепить файл</Text>
                 </TouchableOpacity>
-                <View style={styles.document_item}>
-                  <View>
-                    <Text style={styles.document_item_text}>Диплом</Text>
-                  </View>
-                  <TouchableOpacity >
-                    <ArrowButtonMiniSVG />
-                  </TouchableOpacity>
-                </View>
+                {isFile && (
+                    <View style={styles.document_item}>
+                      <View>
+                        <Text style={styles.document_item_text}>Диплом</Text>
+                      </View>
+                      <TouchableOpacity onPress={() => setIsFile(false)}>
+                        <ArrowButtonMiniSVG/>
+                      </TouchableOpacity>
+                    </View>
+                )}
               </View>
             </View>
-
             <View style={styles.container_input}>
               <Text style={styles.text}>Специали-
                 зация</Text>

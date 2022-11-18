@@ -31,7 +31,6 @@ const CustomTextInput: React.FC<IProps> = ({
               onChangeText={onChangeNumber}
               value={number}
               placeholder={placeholder}
-              keyboardType="numeric"
           />
         )}
       </View>
