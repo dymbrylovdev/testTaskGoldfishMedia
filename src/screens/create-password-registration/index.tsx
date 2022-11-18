@@ -61,7 +61,7 @@ const CreatePasswordRegistration: React.FC<StackProps> = ({
               </View>
             </View>
             <Button
-                text={'Продолжить'}
+                text={'Готово'}
                 buttonStyle={styles.button__next}
                 textStyle={styles.button__next_text}
                 disabled={false}

@@ -174,7 +174,7 @@ const RegistrationScreen: React.FC<StackProps> = ({
               />
             </View>
             <Button
-                text={'Пациент'}
+                text={'Продолжить'}
                 buttonStyle={styles.button__next}
                 textStyle={styles.button__next_text}
                 disabled={false}

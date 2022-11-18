@@ -2,7 +2,7 @@ import React from "react";
 import { StackScreenProps } from '@react-navigation/stack';
 import {RootStackParamList} from "../../interfaces/navigate";
 import {ScreenNames, UserType} from "../../utils/constants";
-import {DeviceEventEmitter, Text, View} from "react-native";
+import {Text, View} from "react-native";
 import {styles} from "./style";
 import LogoSvg from "../../../assets/svg/LogoSVG";
 import Button from "../../components/common/button";

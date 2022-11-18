@@ -9,14 +9,15 @@ function App() {
         'Manrope-Medium': require('./assets/fonts/Manrope-Medium.ttf'),
     });
 
-    if (!fontsLoaded) {
-        return null;
-    }
-
     return (
-        <>
-            <StatusBar style={'auto'} />
-            <NavigationComponent/>
+        <>{fontsLoaded ? (
+            <>
+                <StatusBar style={'auto'}/>
+                <NavigationComponent/>
+            </>
+        ) : (
+            <></>
+        )}
         </>
     );
 }
